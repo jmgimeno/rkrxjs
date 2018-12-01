@@ -1,0 +1,29 @@
+<!--
+ ! Excerpted from "Build Reactive Websites with RxJS",
+ ! published by The Pragmatic Bookshelf.
+ ! Copyrights apply to this code. It may not be used to create training material,
+ ! courses, books, articles, and the like. Contact us if you are in doubt.
+ ! We make no guarantees that this code is fit for any purpose.
+ ! Visit http://www.pragmaticprogrammer.com/titles/rkrxjs for more book information.
+-->
+<form [formGroup]="registrationForm">
+  <label>
+    Name:
+    <input formControlName="username">
+  </label>
+  <label>
+    Phone Number:
+    <input formControlName="phoneNumber"/>
+  </label>
+  <!-- <pre>
+  {{ phoneNumber | json }}
+  </pre> -->
+  <div *ngIf="registrationForm.controls.phoneNumber.invalid && (registrationForm.controls.phoneNumber.dirty || registrationForm.controls.phoneNumber.touched)">
+    <div *ngIf="registrationForm.controls.phoneNumber.errors.tooLong">
+      There's too many digits in your phone number!  Wanted 10 but you've got {{ registrationForm.controls.phoneNumber.errors.tooLong.numDigits }}
+    </div>
+    <div *ngIf="registrationForm.controls.phoneNumber.errors.tooShort">
+      Your phone number is too short!  Wanted 10 but you've got {{ registrationForm.controls.phoneNumber.errors.tooShort.numDigits }}
+    </div>
+  </div>
+</form>
